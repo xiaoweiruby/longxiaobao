@@ -1,0 +1,1209 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>龙小宝IP形象设计</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lucide/1.0.0/lucide.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            min-height: 100vh;
+            background: linear-gradient(to bottom, #FFF9E6, #FFF3CC);
+            color: #333;
+        }
+        
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 2px solid #FF6B35;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #FF6B35;
+            opacity: 0;
+            transform: translateY(-20px);
+            animation: fadeIn 0.5s forwards;
+        }
+        
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .desktop-nav {
+            display: none;
+        }
+        
+        .nav-button {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.125rem;
+            color: #FF6B35;
+            transition: color 0.3s;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .nav-button:hover {
+            color: #3BB273;
+        }
+        
+        .active-nav {
+            color: #3BB273;
+        }
+        
+        .mobile-menu-button {
+            display: block;
+            color: #FF6B35;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        .mobile-menu {
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            overflow: hidden;
+            max-height: 0;
+            opacity: 0;
+            transition: opacity 0.3s, max-height 0.3s;
+        }
+        
+        .mobile-menu.open {
+            max-height: 500px;
+            opacity: 1;
+        }
+        
+        .mobile-menu-content {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            padding: 1rem;
+        }
+        
+        .mobile-nav-button {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.125rem;
+            color: #FF6B35;
+            transition: all 0.3s;
+            background: none;
+            border: none;
+            cursor: pointer;
+            text-align: left;
+        }
+        
+        .mobile-nav-button:hover {
+            color: #3BB273;
+            transform: translateX(5px);
+        }
+        
+        main {
+            padding: 2rem 1rem;
+        }
+        
+        section {
+            margin-bottom: 5rem;
+            padding-top: 2.5rem;
+        }
+        
+        .section-card {
+            background-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(5px);
+            border-radius: 0.5rem;
+            border: 2px solid #FF6B35;
+            padding: 2rem;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s, transform 0.8s;
+        }
+        
+        .section-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        h2 {
+            font-size: 1.875rem;
+            font-weight: 700;
+            color: #FF6B35;
+            margin-bottom: 2rem;
+        }
+        
+        .text-center {
+            text-align: center;
+        }
+        
+        .intro-content {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        
+        @media (min-width: 768px) {
+            .intro-content {
+                flex-direction: row;
+            }
+        }
+        
+        .intro-image {
+            width: 100%;
+        }
+        
+        @media (min-width: 768px) {
+            .intro-image {
+                width: 40%;
+            }
+        }
+        
+        .intro-text {
+            width: 100%;
+        }
+        
+        @media (min-width: 768px) {
+            .intro-text {
+                width: 60%;
+            }
+        }
+        
+        .image-placeholder {
+            background-color: white;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .image-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .color-palette {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: #9ca3af;
+        }
+        
+        @media (min-width: 768px) {
+            .color-palette {
+                grid-template-columns: repeat(5, 1fr);
+            }
+        }
+        
+        .color-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: transform 0.3s;
+        }
+        
+        .color-item:hover {
+            transform: scale(1.05);
+        }
+        
+        .color-circle {
+            width: 3rem;
+            height: 3rem;
+            border-radius: 50%;
+            border: 1px solid #e5e7eb;
+            margin-bottom: 0.5rem;
+        }
+        
+        .views-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+        
+        @media (min-width: 768px) {
+            .views-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
+        .view-card {
+            background-color: #FFEED9;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        .view-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .view-image {
+            background-color: white;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+            height: 12rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #9ca3af;
+        }
+        
+        .outfits-container {
+            position: relative;
+        }
+        
+        .outfits-scroll {
+            display: flex;
+            overflow-x: auto;
+            padding-bottom: 1rem;
+            scrollbar-width: none;
+        }
+        
+        .outfits-scroll::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .outfits-inner {
+            display: flex;
+            gap: 1.5rem;
+        }
+        
+        .outfit-card {
+            flex-shrink: 0;
+            width: 20rem;
+            background-color: #FFEED9;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        .outfit-card:hover {
+            transform: scale(1.03);
+        }
+        
+        .outfit-image {
+            height: 16rem;
+            background-color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #9ca3af;
+        }
+        
+        .outfit-nav-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(5px);
+            border-radius: 50%;
+            padding: 0.5rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            z-index: 10;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .prev-button {
+            left: 0;
+            margin-left: -1rem;
+        }
+        
+        .next-button {
+            right: 0;
+            margin-right: -1rem;
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+        
+        @media (min-width: 768px) {
+            .products-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+        
+        .product-card {
+            background-color: #FFEED9;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+            position: relative;
+        }
+        
+        .product-card:hover {
+            transform: scale(1.05);
+        }
+        
+        .product-image {
+            height: 12rem;
+            background-color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #9ca3af;
+        }
+        
+        .product-overlay {
+            position: absolute;
+            inset: 0;
+            background-color: rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .product-card:hover .product-overlay {
+            opacity: 1;
+        }
+        
+        .product-price {
+            background-color: #FF6B35;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+        }
+        
+        .posters-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+        
+        @media (min-width: 768px) {
+            .posters-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        .poster-card {
+            background-color: #FFEED9;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        .poster-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .poster-image {
+            height: 20rem;
+            background-color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #9ca3af;
+        }
+        
+        .emojis-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+        
+        @media (min-width: 768px) {
+            .emojis-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+        
+        .emoji-card {
+            background-color: #FFEED9;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            text-align: center;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        .emoji-card:hover {
+            transform: scale(1.1);
+        }
+        
+        .emoji-image {
+            height: 8rem;
+            width: 8rem;
+            background-color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            margin: 0 auto;
+        }
+        
+        .emoji-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        footer {
+            background-color: #F5F5F5;
+            padding: 1.5rem 0;
+        }
+
+        .music-player {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 100;
+        }
+
+        .music-button {
+            background-color: #FF6B35;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 3.5rem;
+            height: 3.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .music-button:hover {
+            transform: scale(1.1);
+            background-color: #3BB273;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .footer-link {
+            color: #FF6B35;
+            text-decoration: none;
+        }
+        
+        .footer-link:hover {
+            text-decoration: underline;
+        }
+        
+        @media (min-width: 768px) {
+            .desktop-nav {
+                display: flex;
+                gap: 2.5rem;
+            }
+            
+            .mobile-menu-button {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 头部区域 -->
+    <header>
+        <div class="container header-content">
+            <h1>龙小宝IP形象设计</h1>
+            
+            <nav class="desktop-nav">
+                <button class="nav-button active-nav" data-section="intro">
+                    <i data-lucide="home" width="20" height="20"></i>
+                    <span>介绍</span>
+                </button>
+                <button class="nav-button" data-section="views">
+                    <i data-lucide="image" width="20" height="20"></i>
+                    <span>三视图</span>
+                </button>
+                <button class="nav-button" data-section="outfits">
+                    <i data-lucide="refresh-cw" width="20" height="20"></i>
+                    <span>变装</span>
+                </button>
+                <button class="nav-button" data-section="products">
+                    <i data-lucide="shirt" width="20" height="20"></i>
+                    <span>周边</span>
+                </button>
+                <button class="nav-button" data-section="posters">
+                    <i data-lucide="file-image" width="20" height="20"></i>
+                    <span>海报</span>
+                </button>
+                <button class="nav-button" data-section="emojis">
+                    <i data-lucide="smile" width="20" height="20"></i>
+                    <span>表情包</span>
+                </button>
+            </nav>
+            
+            <button class="mobile-menu-button">☰</button>
+        </div>
+        
+        <!-- 移动端菜单 -->
+        <div class="mobile-menu">
+            <div class="mobile-menu-content">
+                <button class="mobile-nav-button active-nav" data-section="intro">
+                    <i data-lucide="home" width="20" height="20"></i>
+                    <span>介绍</span>
+                </button>
+                <button class="mobile-nav-button" data-section="views">
+                    <i data-lucide="image" width="20" height="20"></i>
+                    <span>三视图</span>
+                </button>
+                <button class="mobile-nav-button" data-section="outfits">
+                    <i data-lucide="refresh-cw" width="20" height="20"></i>
+                    <span>变装</span>
+                </button>
+                <button class="mobile-nav-button" data-section="products">
+                    <i data-lucide="shirt" width="20" height="20"></i>
+                    <span>周边</span>
+                </button>
+                <button class="mobile-nav-button" data-section="posters">
+                    <i data-lucide="file-image" width="20" height="20"></i>
+                    <span>海报</span>
+                </button>
+                <button class="mobile-nav-button" data-section="emojis">
+                    <i data-lucide="smile" width="20" height="20"></i>
+                    <span>表情包</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+     
+    <main class="container">
+        <!-- 自我介绍部分 -->
+        <section id="intro">
+            <div class="section-card">
+                <div class="intro-content">
+                    <div class="intro-image">
+                        <div class="image-placeholder">
+                            <img src="/public/主视图/龙小宝主形象.png" alt="龙小宝IP形象">
+                        </div>
+                    </div>
+                    
+                    <div class="intro-text">
+                        <h2>龙小宝自我介绍</h2>
+                        <p class="leading-relaxed">
+                            大家好，我是龙小宝！我是一只可爱的小龙，全身主体是明亮的黄色，头顶有橙红色的火焰状装饰。我的双耳内侧是粉色的，鹿角是彩色渐变的，有着绿色的大眼睛。我的脸颊上有带字母"W"的粉色腮红，鼻头也是粉色的，总是面带微笑。我的腹部是白色的，四肢下部有黄色的鳞片，脚爪是粉色的。我的尾巴带有彩色鳞片，末端是带黄色闪电的云朵造型。
+                        </p>
+                        
+                        <div class="color-palette">
+                            <div class="color-item">
+                                <div class="color-circle" style="background-color: #FFD93D;"></div>
+                                <span class="text-sm">主体黄</span>
+                            </div>
+                            <div class="color-item">
+                                <div class="color-circle" style="background-color: #FF6B35;"></div>
+                                <span class="text-sm">火焰橙红</span>
+                            </div>
+                            <div class="color-item">
+                                <div class="color-circle" style="background-color: #FF87A1;"></div>
+                                <span class="text-sm">腮红粉</span>
+                            </div>
+                            <div class="color-item">
+                                <div class="color-circle" style="background-color: #3BB273;"></div>
+                                <span class="text-sm">眼睛绿</span>
+                            </div>
+                            <div class="color-item">
+                                <div class="color-circle" style="background-color: #FFFFFF; border: 1px solid #e5e7eb;"></div>
+                                <span class="text-sm">腹部白</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        
+            <!-- 特征展示部分 -->
+            <div class="section-card" style="margin-top: 5rem;">
+                <h2 class="text-center">特征详解</h2>
+                <div class="features-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 2rem;">
+                    <div class="feature-card" style="background-color: #FFEED9; border-radius: 0.5rem; padding: 1.5rem; text-align: center; transition: transform 0.3s;">
+                        <div class="feature-icon" style="width: 4rem; height: 4rem; background-color: #FFB6C1; border-radius: 50%; margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center;">
+                            <i data-lucide="flame" width="24" height="24" style="color: white;"></i>
+                        </div>
+                        <h3>火焰毛发</h3>
+                        <p>红黄渐变的色彩，仿佛燃烧着无限的活力</p>
+                    </div>
+                    <div class="feature-card" style="background-color: #FFEED9; border-radius: 0.5rem; padding: 1.5rem; text-align: center; transition: transform 0.3s;">
+                        <div class="feature-icon" style="width: 4rem; height: 4rem; background-color: #98FB98; border-radius: 50%; margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center;">
+                            <i data-lucide="eye" width="24" height="24" style="color: white;"></i>
+                        </div>
+                        <h3>绿色眼睛</h3>
+                        <p>清澈明亮的绿色大眼睛，透露着纯真与好奇</p>
+                    </div>
+                    <div class="feature-card" style="background-color: #FFEED9; border-radius: 0.5rem; padding: 1.5rem; text-align: center; transition: transform 0.3s;">
+                        <div class="feature-icon" style="width: 4rem; height: 4rem; background-color: #DDA0DD; border-radius: 50%; margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center;">
+                            <i data-lucide="heart" width="24" height="24" style="color: white;"></i>
+                        </div>
+                        <h3>粉色腮红</h3>
+                        <p>带有字母"W"的粉色腮红，增添可爱元素</p>
+                    </div>
+                    <div class="feature-card" style="background-color: #FFEED9; border-radius: 0.5rem; padding: 1.5rem; text-align: center; transition: transform 0.3s;">
+                        <div class="feature-icon" style="width: 4rem; height: 4rem; background-color: #87CEEB; border-radius: 50%; margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center;">
+                            <i data-lucide="cloud-lightning" width="24" height="24" style="color: white;"></i>
+                        </div>
+                        <h3>云朵尾巴</h3>
+                        <p>尾巴末端的云朵造型，带有黄色闪电装饰</p>
+                    </div>
+                    <div class="feature-card" style="background-color: #FFEED9; border-radius: 0.5rem; padding: 1.5rem; text-align: center; transition: transform 0.3s;">
+                        <div class="feature-icon" style="width: 4rem; height: 4rem; background-color: #FFD700; border-radius: 50%; margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center;">
+                            <i data-lucide="sparkles" width="24" height="24" style="color: white;"></i>
+                        </div>
+                        <h3>彩色鹿角</h3>
+                        <p>独特的彩色渐变鹿角，展现活泼个性</p>
+                    </div>
+                    <div class="feature-card" style="background-color: #FFEED9; border-radius: 0.5rem; padding: 1.5rem; text-align: center; transition: transform 0.3s;">
+                        <div class="feature-icon" style="width: 4rem; height: 4rem; background-color: #FFA07A; border-radius: 50%; margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center;">
+                            <i data-lucide="footprints" width="24" height="24" style="color: white;"></i>
+                        </div>
+                        <h3>粉色脚爪</h3>
+                        <p>可爱的粉色脚爪，搭配黄色鳞片装饰</p>
+                    </div>
+                </div>
+            </div>
+       
+
+        <!-- 三视图部分 -->
+        <section id="views">
+            <div class="section-card">
+                <h2 class="text-center">三视图展示</h2>
+                
+                <div class="views-grid">
+                    <div class="view-card">
+                        <div class="view-image">
+                            <img src="/public/主视图/正面示意图.png" alt="正视图" style="width: 100%; height: 100%; object-fit: contain;">
+                        </div>
+                        <h3>正视图</h3>
+                        <p>展示正面特征</p>
+                        <div class="text-sm">可商用范围：线上线下全渠道</div>
+                    </div>
+                    <div class="view-card">
+                        <div class="view-image">
+                            <img src="/public/主视图/侧面示意图.png" alt="侧视图" style="width: 100%; height: 100%; object-fit: contain;">
+                        </div>
+                        <h3>侧视图</h3>
+                        <p>展示侧面轮廓</p>
+                        <div class="text-sm">可商用范围：线上线下全渠道</div>
+                    </div>
+                    <div class="view-card">
+                        <div class="view-image">
+                            <img src="/public/主视图/背面示意图.png" alt="后视图" style="width: 100%; height: 100%; object-fit: contain;">
+                        </div>
+                        <h3>后视图</h3>
+                        <p>展示背面细节</p>
+                        <div class="text-sm">可商用范围：线上线下全渠道</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 变装展示部分 -->
+        <section id="outfits">
+            <div class="section-card">
+                <h2 class="text-center">节气变装展示</h2>
+                
+                <div class="outfits-container">
+                    <div class="outfits-scroll">
+                        <div class="outfits-inner">
+                            <div class="outfit-card" style="background-color: #A8E6CF;">
+                                <div class="outfit-image">
+                                    <img src="/public/变装图/清明踏青形象.png" alt="清明踏青装形象" style="width: 100%; height: 100%; object-fit: contain;">
+                                </div>
+                                <div class="p-4">
+                                    <h3 class="text-center">清明踏青装</h3>
+                                </div>
+                            </div>
+                            <div class="outfit-card" style="background-color: #DCE2F0;">
+                                <div class="outfit-image">
+                                    <img src="/public/变装图/夏日泳装造型.png" alt="夏日泳装形象" style="width: 100%; height: 100%; object-fit: contain;">
+                                </div>
+                                <div class="p-4">
+                                    <h3 class="text-center">夏日泳装</h3>
+                                </div>
+                            </div>
+                            <div class="outfit-card" style="background-color: #FFD3B6;">
+                                <div class="outfit-image">
+                                    <img src="/public/变装图/汉服小鹿喝酒.png" alt="中秋汉服形象" style="width: 100%; height: 100%; object-fit: contain;">
+                                </div>
+                                <div class="p-4">
+                                    <h3 class="text-center">中秋汉服</h3>
+                                </div>
+                            </div>
+                            <div class="outfit-card" style="background-color: #FFAAA5;">
+                                <div class="outfit-image">
+                                    <img src="/public/变装图/春节唐装拜年.png" alt="春节唐装形象" style="width: 100%; height: 100%; object-fit: contain;">
+                                </div>
+                                <div class="p-4">
+                                    <h3 class="text-center">春节唐装</h3>
+                                </div>
+                            </div>
+                            <div class="outfit-card" style="background-color: #DCBFFF;">
+                                <div class="outfit-image">
+                                    <img src="/public/变装图/可爱超人万圣节.png" alt="万圣节装扮形象" style="width: 100%; height: 100%; object-fit: contain;">
+                                </div>
+                                <div class="p-4">
+                                    <h3 class="text-center">万圣节装扮</h3>
+                                </div>
+                            </div>
+                            <div class="outfit-card" style="background-color: #FF8B94;">
+                                <div class="outfit-image">
+                                    <img src="/public/变装图/圣诞萌趣角色.png" alt="圣诞礼服形象" style="width: 100%; height: 100%; object-fit: contain;">
+
+                                </div>
+                                <div class="p-4">
+                                    <h3 class="text-center">圣诞礼服</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button class="outfit-nav-button prev-button">
+                        <i data-lucide="chevron-left" width="24" height="24" color="#FF6B35"></i>
+                    </button>
+                    <button class="outfit-nav-button next-button">
+                        <i data-lucide="chevron-right" width="24" height="24" color="#FF6B35"></i>
+                    </button>
+                </div>
+                
+                <div class="text-center mt-4">
+                    当前变装展示
+                </div>
+            </div>
+        </section>
+
+        <!-- 周边产品部分 -->
+        <section id="products">
+            <div class="section-card">
+                <h2 class="text-center">周边产品</h2>
+                
+                <div class="products-grid">
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="/public/周边图/帆布包.png" alt="帆布包" style="width: 100%; height: 100%; object-fit: contain;">
+                        </div>
+                        <div class="p-4 relative">
+                            <h3 class="text-center">帆布包</h3>
+                            <div class="product-overlay">
+                                <div class="product-price">¥49</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="/public/周边图/徽章.png" alt="徽章" style="width: 100%; height: 100%; object-fit: contain;">
+                        </div>
+                        <div class="p-4 relative">
+                            <h3 class="text-center">徽章</h3>
+                            <div class="product-overlay">
+                                <div class="product-price">¥19</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="/public/周边图/立牌.webp" alt="立牌" style="width: 100%; height: 100%; object-fit: contain;">
+                        </div>
+                        <div class="p-4 relative">
+                            <h3 class="text-center">立牌</h3>
+                            <div class="product-overlay">
+                                <div class="product-price">¥39</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="/public/周边图/手机壳.png" alt="手机壳" style="width: 100%; height: 100%; object-fit: contain;">
+                        </div>
+                        <div class="p-4 relative">
+                            <h3 class="text-center">手机壳</h3>
+                            <div class="product-overlay">
+                                <div class="product-price">¥59</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="/public/周边图/笔记本.webp" alt="笔记本" style="width: 100%; height: 100%; object-fit: contain;">
+                        </div>
+                        <div class="p-4 relative">
+                            <h3 class="text-center">笔记本</h3>
+                            <div class="product-overlay">
+                                <div class="product-price">¥29</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="/public/周边图/钥匙扣.png" alt="钥匙扣" style="width: 100%; height: 100%; object-fit: contain;">
+                        </div>
+                        <div class="p-4 relative">
+                            <h3 class="text-center">钥匙扣</h3>
+                            <div class="product-overlay">
+                                <div class="product-price">¥25</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="/public/周边图/水杯.webp" alt="水杯" style="width: 100%; height: 100%; object-fit: contain;">
+                        </div>
+                        <div class="p-4 relative">
+                            <h3 class="text-center">水杯</h3>
+                            <div class="product-overlay">
+                                <div class="product-price">¥69</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="/public/周边图/体恤.png" alt="T恤" style="width: 100%; height: 100%; object-fit: contain;">
+                        </div>
+                        <div class="p-4 relative">
+                            <h3 class="text-center">T恤</h3>
+                            <div class="product-overlay">
+                                <div class="product-price">¥89</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 海报展示部分 -->
+        <section id="posters">
+            <div class="section-card">
+                <h2 class="text-center">宣传海报</h2>
+                
+                <div class="posters-grid">
+                    <div class="poster-card">
+                        <div class="poster-image">
+                            <img src="/public/海报图/新年活动.png" alt="新年海报" style="width: 100%; height: 100%; object-fit: contain;">
+                        </div>
+                        <div class="p-4">
+                            <h3 class="text-center">新年海报</h3>
+                            <p class="text-center">主题：festival</p>
+                        </div>
+                    </div>
+                    <div class="poster-card">
+                        <div class="poster-image">
+                            <img src="/public/海报图/夏日活动.png" alt="夏日活动" style="width: 100%; height: 100%; object-fit: contain;">
+                        </div>
+                        <div class="p-4">
+                            <h3 class="text-center">夏日活动</h3>
+                            <p class="text-center">主题：summer</p>
+                        </div>
+                    </div>
+                    <div class="poster-card">
+                        <div class="poster-image">
+                            <img src="/public/海报图/开学季.png" alt="开学季" style="width: 100%; height: 100%; object-fit: contain;">
+                        </div>
+                        <div class="p-4">
+                            <h3 class="text-center">开学季</h3>
+                            <p class="text-center">主题：school</p>
+                        </div>
+                    </div>
+                    <div class="poster-card">
+                        <div class="poster-image">
+                         <img src="/public/海报图/双十一.png" alt="双十一" style="width: 100%; height: 100%; object-fit: contain;">
+                        </div>
+                        <div class="p-4">
+                            <h3 class="text-center">双十一</h3>
+                            <p class="text-center">主题：shopping</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 表情包部分 -->
+        <section id="emojis">
+            <div class="section-card">
+                <h2 class="text-center">表情包系列</h2>
+                
+                <div class="emojis-grid">
+                    <div class="emoji-card">
+                        <div class="emoji-image">
+                            <img src="/public/表情包/比心.png" alt="比心表情" style="width: 100%; height: 100%; object-fit: contain;">
+                        </div>
+                        <h3>比心</h3>
+                    </div>
+                    <div class="emoji-card">
+                        <div class="emoji-image">
+                            <img src="/public/表情包/加油.png" alt="加油表情" style="width: 100%; height: 100%; object-fit: contain;">
+                        </div>
+                        <h3>加油</h3>
+                    </div>
+                    <div class="emoji-card">
+                        <div class="emoji-image">
+                            <img src="/public/表情包/开心.png" alt="开心表情" style="width: 100%; height: 100%; object-fit: contain;">
+                        </div>
+                        <h3>开心</h3>
+                    </div>
+                    <div class="emoji-card">
+                        <div class="emoji-image">
+                            <img src="/public/表情包/生气.png" alt="生气表情" style="width: 100%; height: 100%; object-fit: contain;">
+                        </div>
+                        <h3>生气</h3>
+                    </div>
+                    <div class="emoji-card">
+                        <div class="emoji-image">
+                            <img src="/public/表情包/惊讶.png" alt="惊讶表情" style="width: 100%; height: 100%; object-fit: contain;">
+                        </div>
+                        <h3>惊讶</h3>
+                    </div>
+                    <div class="emoji-card">
+                        <div class="emoji-image">
+                         <img src="/public/表情包/困倦.png" alt="困倦表情" style="width: 100%; height: 100%; object-fit: contain;">
+                        </div>
+                        <h3>困倦</h3>
+                    </div>
+                    <div class="emoji-card">
+                        <div class="emoji-image">
+                          <img src="/public/表情包/调皮.png" alt="调皮表情" style="width: 100%; height: 100%; object-fit: contain;">
+                        </div>
+                        <h3>调皮</h3>
+                    </div>
+                    <div class="emoji-card">
+                        <div class="emoji-image">
+                         <img src="/public/表情包/害羞.png" alt=" 害羞表情" style="width: 100%; height: 100%; object-fit: contain;">
+                        </div>
+                        <h3>害羞</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 设计师作者部分 -->
+        <section id="designer">
+            <div class="section-card">
+                <h2 class="text-center">围巾哥萧尘</h2>
+                <div class="designer-content" style="display: flex; align-items: center; gap: 2rem; margin-top: 2rem;">
+                    <div class="designer-image" style="flex: 1; max-width: 300px;">
+                        <img src="/public/主视图/作者.png" alt="设计师团队" style="width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+                    </div>
+                    <div class="designer-info" style="flex: 2;">
+                        <h3 style="color: #FF6B35; margin-bottom: 1rem;">创作理念</h3>
+                        <p style="line-height: 1.8; color: #666;">龙小宝IP形象由围巾哥萧尘倾心打造，融合了传统中国龙的元素与现代可爱风格。我们希望通过这个形象传递欢乐、活力与智慧，让每个人都能感受到中国传统文化的魅力。</p>
+                        <div style="margin-top: 1.5rem;">
+                            <h4 style="color: #FF6B35; margin-bottom: 0.5rem;">设计特点</h4>
+                            <ul style="list-style: none; padding: 0;">
+                                <li style="margin-bottom: 0.5rem; color: #666;">✨ 结合传统与现代的创新设计</li>
+                                <li style="margin-bottom: 0.5rem; color: #666;">🎨 独特的配色方案</li>
+                                <li style="margin-bottom: 0.5rem; color: #666;">🌟 丰富的表情系统</li>
+                                <li style="color: #666;">💫 多样化的应用场景</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 音乐播放器 -->
+    <div class="music-player">
+        <button class="music-button" id="musicToggle">
+            <i data-lucide="music" width="24" height="24"></i>
+        </button>
+        <audio id="bgMusic" loop>
+            <source src="/public/主视图/龙宝奇缘.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="container footer-content">
+           
+            
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        // 初始化Lucide图标
+        lucide.createIcons();
+        
+        // 滚动到指定部分
+        function scrollToSection(sectionId) {
+            const element = document.getElementById(sectionId);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+                setActiveSection(sectionId);
+                document.querySelector('.mobile-menu').classList.remove('open');
+                document.querySelector('.mobile-menu-button').textContent = '☰';
+            }
+        }
+        
+        // 设置活动部分
+        function setActiveSection(sectionId) {
+            // 更新桌面导航
+            document.querySelectorAll('.desktop-nav .nav-button').forEach(button => {
+                if (button.dataset.section === sectionId) {
+                    button.classList.add('active-nav');
+                } else {
+                    button.classList.remove('active-nav');
+                }
+            });
+            
+            // 更新移动导航
+            document.querySelectorAll('.mobile-nav-button').forEach(button => {
+                if (button.dataset.section === sectionId) {
+                    button.classList.add('active-nav');
+                } else {
+                    button.classList.remove('active-nav');
+                }
+            });
+        }
+        
+        // 滚动检测
+        function handleScroll() {
+            const sections = ['intro', 'views', 'outfits', 'products', 'posters', 'emojis'];
+            for (const section of sections) {
+                const element = document.getElementById(section);
+                if (!element) continue;
+                
+                const rect = element.getBoundingClientRect();
+                if (rect.top <= 100 && rect.bottom >= 100) {
+                    setActiveSection(section);
+                    break;
+                }
+            }
+        }
+        
+        // 变装展示导航
+        let currentOutfitIndex = 0;
+        const outfitData = [
+            { name: '清明踏青装', color: '#A8E6CF' },
+            { name: '夏日泳装', color: '#DCE2F0' },
+            { name: '中秋汉服', color: '#FFD3B6' },
+            { name: '春节唐装', color: '#FFAAA5' },
+            { name: '万圣节装扮', color: '#DCBFFF' },
+            { name: '圣诞礼服', color: '#FF8B94' }
+        ];
+        
+        function nextOutfit() {
+            currentOutfitIndex = (currentOutfitIndex + 1) % outfitData.length;
+            updateOutfitDisplay();
+        }
+        
+        function prevOutfit() {
+            currentOutfitIndex = (currentOutfitIndex - 1 + outfitData.length) % outfitData.length;
+            updateOutfitDisplay();
+        }
+        
+        function updateOutfitDisplay() {
+            const outfitName = outfitData[currentOutfitIndex].name;
+            const scrollContainer = document.querySelector('.outfits-scroll');
+            const cardWidth = 320; // 卡片宽度
+            const gap = 16; // 间隔
+            scrollContainer.scrollTo({
+                left: currentOutfitIndex * (cardWidth + gap),
+                behavior: 'smooth'
+            });
+            document.querySelector('#outfits .text-center').textContent = `当前展示：${outfitName}`;
+        }
+        
+        // 元素进入视口检测
+        function checkVisibility() {
+            const sections = document.querySelectorAll('.section-card');
+            sections.forEach(section => {
+                const rect = section.getBoundingClientRect();
+                if (rect.top <= window.innerHeight - 100 && rect.bottom >= 100) {
+                    section.classList.add('visible');
+                }
+            });
+        }
+        
+        // 事件监听
+        document.addEventListener('DOMContentLoaded', () => {
+            // 导航按钮点击事件
+            document.querySelectorAll('.nav-button, .mobile-nav-button').forEach(button => {
+                button.addEventListener('click', () => {
+                    scrollToSection(button.dataset.section);
+                });
+            });
+            
+            // 移动菜单按钮
+            document.querySelector('.mobile-menu-button').addEventListener('click', () => {
+                const menu = document.querySelector('.mobile-menu');
+                if (menu.classList.contains('open')) {
+                    menu.classList.remove('open');
+                    document.querySelector('.mobile-menu-button').textContent = '☰';
+                } else {
+                    menu.classList.add('open');
+                    document.querySelector('.mobile-menu-button').textContent = '✕';
+                }
+            });
+            
+            // 变装导航按钮
+            document.querySelector('.next-button').addEventListener('click', nextOutfit);
+            document.querySelector('.prev-button').addEventListener('click', prevOutfit);
+            
+            // 滚动事件
+            window.addEventListener('scroll', handleScroll);
+            window.addEventListener('scroll', checkVisibility);
+            
+            // 初始检查
+            checkVisibility();
+
+            // 音乐播放控制
+            const musicToggle = document.getElementById('musicToggle');
+            const bgMusic = document.getElementById('bgMusic');
+            const musicIcon = musicToggle.querySelector('i');
+
+            musicToggle.addEventListener('click', () => {
+                if (bgMusic.paused) {
+                    bgMusic.play();
+                    musicIcon.setAttribute('data-lucide', 'music-off');
+                } else {
+                    bgMusic.pause();
+                    musicIcon.setAttribute('data-lucide', 'music');
+                }
+                lucide.createIcons();
+            });
+        });
+    </script>
+</body>
+</html>
